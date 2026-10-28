@@ -1,13 +1,13 @@
 {
   "name": "6185",
   "version": "1.0.0",
-  "description": "Node.js project for the 6185 account with UI and local SQLite DB",
+  "description": "Comprehensive 6185 AI Builder Agent — Node.js structure with UI and local SQLite DB",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js"
   },
-  "keywords": ["6185", "node", "express", "sqlite"],
+  "keywords": ["6185", "ai", "agent", "builder", "node", "sqlite"],
   "author": "Athol Rowsell",
   "license": "MIT",
   "dependencies": {
