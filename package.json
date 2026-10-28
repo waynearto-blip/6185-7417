@@ -1,13 +1,17 @@
 {
   "name": "6185",
   "version": "1.0.0",
-  "description": "Node.js project for the 6185 account",
+  "description": "Node.js project for the 6185 account with UI and local SQLite DB",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js"
   },
-  "keywords": ["6185", "node"],
+  "keywords": ["6185", "node", "express", "sqlite"],
   "author": "Athol Rowsell",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "express": "^4.21.1"
+  }
 }
