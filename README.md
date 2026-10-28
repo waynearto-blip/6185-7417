@@ -1,39 +1,53 @@
-# 6185
+# 6185 AI Builder Agent
 
-Node.js project for the 6185 account with a simple web UI and local SQLite database.
+Comprehensive Node.js structure for an AI Builder Agent (6185 account).
 
-## Features
-- Express web server
-- Simple UI to manage items (notes/records)
-- Local SQLite database (`data/6185.db`)
-- REST API for items
+## Overview
+Modular architecture for an agent that plans, scaffolds, and builds projects, with a local SQLite DB for memory/history and a simple web UI.
 
-## Getting started
-
-```bash
-# Install dependencies
-npm install
-
-# Run the project
-npm start
-
-# Or in watch mode (Node 18+)
-npm run dev
+## Project Structure
+```
+6185-7417/
+├── src/
+│   ├── agents/
+│   │   └── builderAgent.js     # Core AI builder agent class
+│   ├── tools/
+│   │   └── fileSystem.js       # File system tools for the agent
+│   ├── prompts/
+│   │   └── systemPrompts.js    # System prompts for planning/building
+│   ├── db/
+│   │   └── database.js         # SQLite setup (builds + items tables)
+│   └── config.js              # Agent configuration
+├── public/                   # Web UI (items manager + future agent dashboard)
+├── index.js                  # Express entry point + agent API
+├── package.json
+├── data/                     # Local DB (gitignored)
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+## Features
+- AI Builder Agent with planning stubs (ready for LLM integration)
+- Local SQLite for build history and items
+- REST API for agent builds and items
+- Simple web UI
+- Modular tools and prompts
 
-## Structure
+## Getting started
+```bash
+npm install
+npm start
+```
+Open http://localhost:3000
 
-- `index.js` — Express server + API + DB init
-- `public/` — Static UI (HTML/CSS/JS)
-- `data/6185.db` — Local SQLite database (created on first run, gitignored)
-- `package.json` — Dependencies: express, better-sqlite3
+### Agent API
+- `POST /api/agent/build` — `{ prompt }` → create build + plan
+- `GET /api/agent/builds` — list builds
+- `GET /api/agent/builds/:id` — get build details
 
-## API
+### Next steps
+- Integrate real LLM (OpenAI, Anthropic, etc.) in `builderAgent.plan()`
+- Expand tools (code gen, testing, git)
+- Enhance UI for agent interaction
+- Add more agent types under `src/agents/`
 
-- `GET /api/items` — List all items
-- `POST /api/items` — Create item `{ title, content }`
-- `DELETE /api/items/:id` — Delete item
-
-Note: `better-sqlite3` requires a C++ compiler on first install (build tools on Windows, build-essential on Linux, Xcode tools on macOS).
+Note: `better-sqlite3` requires native build tools on first install.
