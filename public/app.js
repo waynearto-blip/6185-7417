@@ -62,6 +62,27 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+function renderPresentation(result) {
+  if (!result.presentation || !result.presentation.slides) {
+    return '<p>No presentation generated.</p>';
+  }
+  const slides = result.presentation.slides;
+  let html = `<h3>${escapeHtml(result.presentation.title || result.title)}</h3>
+    <p><strong>Comprehension summary:</strong> ${escapeHtml(result.comprehension?.summary || 'N/A')}</p>
+    <div class="slides">`;
+  slides.forEach(slide => {
+    html += `
+      <div class="slide">
+        <h4>Slide ${slide.number}: ${escapeHtml(slide.title)}</h4>
+        <ul>${(slide.content || []).map(c => `<li>${escapeHtml(c)}</li>`).join('')}</ul>
+        ${slide.speakerNotes ? `<p class="notes"><em>Notes:</em> ${escapeHtml(slide.speakerNotes)}</p>` : ''}
+        ${slide.visuals ? `<p class="visuals"><em>Visuals:</em> ${escapeHtml(slide.visuals)}</p>` : ''}
+      </div>`;
+  });
+  html += '</div>';
+  return html;
+}
+
 document.getElementById('add-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const title = document.getElementById('title').value.trim();
@@ -108,6 +129,38 @@ document.getElementById('build-form').addEventListener('submit', async (e) => {
     `;
 
     document.getElementById('build-prompt').value = '';
+    loadBuilds();
+  } catch (err) {
+    resultDiv.innerHTML = `<p style="color:red">Error: ${escapeHtml(err.message)}</p>`;
+  }
+});
+
+document.getElementById('contract-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const contractText = document.getElementById('contract-text').value.trim();
+  const title = document.getElementById('pres-title').value.trim() || 'Contract Review Presentation';
+  if (contractText.length < 50) {
+    alert('Please paste a longer contract or specification.');
+    return;
+  }
+
+  const resultDiv = document.getElementById('presentation-result');
+  resultDiv.innerHTML = '<p>Performing deep comprehension and generating extensive presentation... (this may take 20-40 seconds)</p>';
+
+  try {
+    const res = await fetch('/api/agent/contract-to-presentation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contractText, title })
+    });
+    const data = await res.json();
+
+    if (data.error) {
+      resultDiv.innerHTML = `<p style="color:red">${escapeHtml(data.error)}</p>`;
+      return;
+    }
+
+    resultDiv.innerHTML = renderPresentation(data);
     loadBuilds();
   } catch (err) {
     resultDiv.innerHTML = `<p style="color:red">Error: ${escapeHtml(err.message)}</p>`;
