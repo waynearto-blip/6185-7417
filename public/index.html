@@ -9,12 +9,25 @@
 <body>
   <header>
     <h1>6185 AI Builder Agent</h1>
-    <p>Local notes + AI project builder</p>
+    <p>Contract comprehension → Presentation + Project builder</p>
   </header>
 
   <main>
     <section>
-      <h2>AI Builder</h2>
+      <h2>Contract to Presentation</h2>
+      <p>Paste a contract, SOW, or project specification for deep comprehension and a full presentation.</p>
+      <form id="contract-form">
+        <input type="text" id="pres-title" placeholder="Presentation title (optional)" value="Contract Review Presentation">
+        <textarea id="contract-text" placeholder="Paste the full contract or specification text here..." required style="min-height: 200px;"></textarea>
+        <button type="submit">Generate Comprehensive Presentation</button>
+      </form>
+      <div id="presentation-result"></div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>AI Project Builder</h2>
       <form id="build-form">
         <textarea id="build-prompt" placeholder="Describe what you want the agent to build..." required></textarea>
         <button type="submit">Generate Plan</button>
