@@ -1,53 +1,56 @@
 # 6185 AI Builder Agent
 
-Comprehensive Node.js structure for an AI Builder Agent (6185 account).
+Comprehensive Node.js AI Builder Agent with real LLM integration (OpenAI), local SQLite memory, tools, and web UI.
 
 ## Overview
-Modular architecture for an agent that plans, scaffolds, and builds projects, with a local SQLite DB for memory/history and a simple web UI.
+Modular agent that plans and scaffolds projects using an LLM, stores build history in SQLite, and provides a simple UI.
 
 ## Project Structure
 ```
 6185-7417/
 ├── src/
 │   ├── agents/
-│   │   └── builderAgent.js     # Core AI builder agent class
+│   │   └── builderAgent.js     # Core agent with OpenAI plan()
 │   ├── tools/
-│   │   └── fileSystem.js       # File system tools for the agent
+│   │   └── fileSystem.js       # File system tools
 │   ├── prompts/
-│   │   └── systemPrompts.js    # System prompts for planning/building
+│   │   └── systemPrompts.js    # System prompts
 │   ├── db/
-│   │   └── database.js         # SQLite setup (builds + items tables)
-│   └── config.js              # Agent configuration
-├── public/                   # Web UI (items manager + future agent dashboard)
-├── index.js                  # Express entry point + agent API
+│   │   └── database.js         # SQLite (builds + items)
+│   └── config.js              # Config + dotenv
+├── public/                   # Web UI (agent + notes)
+├── index.js                  # Express + agent API
 ├── package.json
+├── .env.example              # Copy to .env
 ├── data/                     # Local DB (gitignored)
 └── README.md
 ```
 
+## Setup
+
+1. Copy `.env.example` to `.env` and add your OpenAI key:
+   ```
+   OPENAI_API_KEY=sk-...
+   OPENAI_MODEL=gpt-4o-mini
+   ```
+
+2. Install and run:
+   ```bash
+   npm install
+   npm start
+   ```
+
+3. Open http://localhost:3000
+
 ## Features
-- AI Builder Agent with planning stubs (ready for LLM integration)
-- Local SQLite for build history and items
-- REST API for agent builds and items
-- Simple web UI
-- Modular tools and prompts
+- Real OpenAI-powered planning (`POST /api/agent/build`)
+- Local SQLite for build history and notes
+- Web UI for generating plans and managing items
+- Modular agents / tools / prompts
 
-## Getting started
-```bash
-npm install
-npm start
-```
-Open http://localhost:3000
-
-### Agent API
-- `POST /api/agent/build` — `{ prompt }` → create build + plan
+## Agent API
+- `POST /api/agent/build` — `{ prompt }` → plan + stored build
 - `GET /api/agent/builds` — list builds
-- `GET /api/agent/builds/:id` — get build details
+- `GET /api/agent/builds/:id` — build details
 
-### Next steps
-- Integrate real LLM (OpenAI, Anthropic, etc.) in `builderAgent.plan()`
-- Expand tools (code gen, testing, git)
-- Enhance UI for agent interaction
-- Add more agent types under `src/agents/`
-
-Note: `better-sqlite3` requires native build tools on first install.
+Note: `better-sqlite3` needs native build tools on first install. Without an OpenAI key the agent returns a fallback message.
