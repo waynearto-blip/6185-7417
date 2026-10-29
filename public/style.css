@@ -51,12 +51,12 @@ button:hover {
   background: #0052a3;
 }
 
-#items-list {
+ul {
   list-style: none;
   padding: 0;
 }
 
-#items-list li {
+li {
   background: white;
   margin-bottom: 0.75rem;
   padding: 1rem;
@@ -68,21 +68,21 @@ button:hover {
   gap: 1rem;
 }
 
-#items-list .content {
+.content {
   flex: 1;
 }
 
-#items-list .content h3 {
+.content h3 {
   margin: 0 0 0.5rem 0;
 }
 
-#items-list .content p {
+.content p {
   margin: 0;
   color: #555;
   white-space: pre-wrap;
 }
 
-#items-list .meta {
+.meta {
   font-size: 0.85rem;
   color: #888;
   margin-top: 0.5rem;
@@ -100,4 +100,26 @@ button:hover {
 
 .delete-btn:hover {
   background: #a30000;
+}
+
+#build-result {
+  background: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+#build-result pre {
+  background: #f0f0f0;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid #ddd;
 }
