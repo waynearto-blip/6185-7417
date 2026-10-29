@@ -102,7 +102,7 @@ li {
   background: #a30000;
 }
 
-#build-result {
+#build-result, #presentation-result {
   background: white;
   padding: 1rem;
   border-radius: 6px;
@@ -110,12 +110,30 @@ li {
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-#build-result pre {
+#build-result pre, #presentation-result pre {
   background: #f0f0f0;
   padding: 1rem;
   border-radius: 4px;
   overflow-x: auto;
   white-space: pre-wrap;
+}
+
+.slides .slide {
+  background: #fafafa;
+  border-left: 4px solid #0066cc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.slides .slide h4 {
+  margin: 0 0 0.5rem 0;
+}
+
+.slides .notes, .slides .visuals {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0.5rem 0 0 0;
 }
 
 hr {
