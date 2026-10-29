@@ -6,10 +6,10 @@ const agent = require('./src/agents/builderAgent');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Existing items API (kept for compatibility)
+// Existing items API
 app.get('/api/items', (req, res) => {
   const items = db.prepare('SELECT * FROM items ORDER BY created_at DESC').all();
   res.json(items);
@@ -36,9 +36,19 @@ app.post('/api/agent/build', async (req, res) => {
   if (!prompt) return res.status(400).json({ error: 'Prompt required' });
   const build = await agent.createBuild(prompt);
   const plan = await agent.plan(prompt);
-  // Update build with plan (simplified)
   db.prepare('UPDATE builds SET plan = ?, status = ? WHERE id = ?').run(JSON.stringify(plan), 'planned', build.id);
   res.json({ buildId: build.id, plan });
+});
+
+// Extensive Contract-to-Presentation endpoint
+app.post('/api/agent/contract-to-presentation', async (req, res) => {
+  const { contractText, title } = req.body;
+  if (!contractText || contractText.trim().length < 50) {
+    return res.status(400).json({ error: 'Contract text required (min ~50 characters)' });
+  }
+  const result = await agent.contractToPresentation(contractText, title || 'Contract Review');
+  if (result.error) return res.status(500).json(result);
+  res.json(result);
 });
 
 app.get('/api/agent/builds', async (req, res) => {
