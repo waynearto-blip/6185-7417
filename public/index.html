@@ -3,24 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>6185</title>
+  <title>6185 AI Builder Agent</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>6185</h1>
-    <p>Local notes / items for the 6185 account</p>
+    <h1>6185 AI Builder Agent</h1>
+    <p>Local notes + AI project builder</p>
   </header>
 
   <main>
-    <form id="add-form">
-      <input type="text" id="title" placeholder="Title" required>
-      <textarea id="content" placeholder="Content (optional)"></textarea>
-      <button type="submit">Add Item</button>
-    </form>
+    <section>
+      <h2>AI Builder</h2>
+      <form id="build-form">
+        <textarea id="build-prompt" placeholder="Describe what you want the agent to build..." required></textarea>
+        <button type="submit">Generate Plan</button>
+      </form>
+      <div id="build-result"></div>
+      <h3>Recent Builds</h3>
+      <ul id="builds-list"></ul>
+    </section>
+
+    <hr>
 
     <section>
-      <h2>Items</h2>
+      <h2>Local Items / Notes</h2>
+      <form id="add-form">
+        <input type="text" id="title" placeholder="Title" required>
+        <textarea id="content" placeholder="Content (optional)"></textarea>
+        <button type="submit">Add Item</button>
+      </form>
       <ul id="items-list"></ul>
     </section>
   </main>
