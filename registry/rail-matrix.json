@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "1.0.0-draft",
+  "governance": {
+    "classification": "observational-template",
+    "validationAuthority": "RESERVED",
+    "execution": "HOLD",
+    "notice": "This registry records structure and declared relationships only. It does not establish conformance, certification, provenance, or technical authority."
+  },
+  "rails": [
+    {
+      "id": "RAIL-0001",
+      "artifact": "Normative Requirement",
+      "classification": "TEXT",
+      "source": "Specification",
+      "verification": "Pending",
+      "status": "IDENTIFIED",
+      "dependencies": [],
+      "output": "Requirement ID"
+    },
+    {
+      "id": "RAIL-0002",
+      "artifact": "Stable Requirement Identifier",
+      "classification": "FACT",
+      "source": "Requirements Register",
+      "verification": "Verified by registry structure only",
+      "status": "REGISTERED",
+      "dependencies": ["RAIL-0001"],
+      "output": "IVS-REQ-xxxx"
+    },
+    {
+      "id": "RAIL-0003",
+      "artifact": "Test Vector",
+      "classification": "EVIDENCE",
+      "source": "Corpus",
+      "verification": "Pending execution",
+      "status": "DECLARED",
+      "dependencies": ["RAIL-0002"],
+      "output": "VEC-xxxx"
+    },
+    {
+      "id": "RAIL-0004",
+      "artifact": "Expected Observable Output",
+      "classification": "EVIDENCE",
+      "source": "Expected Results",
+      "verification": "Published; not independently checked by this validator",
+      "status": "DECLARED",
+      "dependencies": ["RAIL-0003"],
+      "output": "PASS / Error / Hash"
+    },
+    {
+      "id": "RAIL-0005",
+      "artifact": "Traceability Matrix Entry",
+      "classification": "EVIDENCE",
+      "source": "Matrix Register",
+      "verification": "Cross-reference declared; semantic linkage not evaluated",
+      "status": "PENDING",
+      "dependencies": ["RAIL-0002", "RAIL-0003", "RAIL-0004"],
+      "output": "Requirement → Vector → Output"
+    },
+    {
+      "id": "RAIL-0006",
+      "artifact": "Conformance Report",
+      "classification": "OUTPUT",
+      "source": "Verification Engine",
+      "verification": "Pending",
+      "status": "HOLD",
+      "dependencies": ["RAIL-0005"],
+      "output": "PASS / FAIL"
+    },
+    {
+      "id": "RAIL-0007",
+      "artifact": "Audit Record",
+      "classification": "GOVERNANCE",
+      "source": "Audit Ledger",
+      "verification": "Append-only policy declared; ledger behavior not implemented here",
+      "status": "OPEN",
+      "dependencies": ["RAIL-0006"],
+      "output": "Audit Entry"
+    },
+    {
+      "id": "RAIL-0008",
+      "artifact": "Witness Matrix",
+      "classification": "EVIDENCE",
+      "source": "Cross-source Register",
+      "verification": "Pending",
+      "status": "RESERVED",
+      "dependencies": [],
+      "output": "Witness Links"
+    },
+    {
+      "id": "RAIL-0009",
+      "artifact": "Dependency Matrix",
+      "classification": "EVIDENCE",
+      "source": "Registry",
+      "verification": "Pending",
+      "status": "RESERVED",
+      "dependencies": ["RAIL-0002"],
+      "output": "Dependency Graph"
+    },
+    {
+      "id": "RAIL-0010",
+      "artifact": "Reproducibility Package",
+      "classification": "OUTPUT",
+      "source": "Release Bundle",
+      "verification": "Pending",
+      "status": "HOLD",
+      "dependencies": ["RAIL-0001", "RAIL-0002", "RAIL-0003", "RAIL-0004", "RAIL-0005", "RAIL-0006", "RAIL-0007", "RAIL-0008", "RAIL-0009"],
+      "output": "Reproducibility Bundle"
+    }
+  ]
+}

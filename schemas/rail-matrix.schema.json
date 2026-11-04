@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/6185/schemas/rail-matrix.schema.json",
+  "title": "6185 Rail Matrix Registry (Draft)",
+  "description": "Structural schema only; validation does not establish conformance, authority, provenance, or semantic correctness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "governance", "rails"],
+  "properties": {
+    "schemaVersion": {"type": "string", "minLength": 1},
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["classification", "validationAuthority", "execution", "notice"],
+      "properties": {
+        "classification": {"const": "observational-template"},
+        "validationAuthority": {"const": "RESERVED"},
+        "execution": {"const": "HOLD"},
+        "notice": {"type": "string", "minLength": 1}
+      }
+    },
+    "rails": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "artifact", "classification", "source", "verification", "status", "dependencies", "output"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^RAIL-[0-9]{4}$"},
+          "artifact": {"type": "string", "minLength": 1},
+          "classification": {"enum": ["TEXT", "FACT", "EVIDENCE", "INFERENCE", "OUTPUT", "GOVERNANCE"]},
+          "source": {"type": "string", "minLength": 1},
+          "verification": {"type": "string", "minLength": 1},
+          "status": {"enum": ["IDENTIFIED", "REGISTERED", "DECLARED", "PENDING", "HOLD", "OPEN", "RESERVED"]},
+          "dependencies": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^RAIL-[0-9]{4}$"}
+          },
+          "output": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

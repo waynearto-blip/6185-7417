@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "validate:rail-matrix": "node scripts/validate-rail-matrix.js"
   },
   "keywords": ["6185", "ai", "agent", "builder", "node", "sqlite"],
   "author": "Athol Rowsell",
