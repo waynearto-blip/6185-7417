@@ -60,3 +60,56 @@ Modular agent that:
 - `GET /api/agent/builds/:id` — build details
 
 Note: `better-sqlite3` needs native build tools on first install. Contract-to-presentation makes two LLM calls and can take 20–40 seconds. Without an OpenAI key the agent returns a fallback message.
+
+## 6185 — Extended Root Register Continuity Acknowledged
+
+Record: `6185-EXTENDED-ROOT-364-000-000-61-85-74-17-001`
+
+**PROPOSED / UNSEALED**
+
+The supplied continuation is acknowledged without modification of existing record identities or versions.
+
+### 1. Root identity preservation
+
+| Classification | Sequence |
+|---|---|
+| Original root | `61:85:74:17` |
+| Extended root | `364.000.000.61.85.74.17` |
+
+Both identities remain independent.
+
+### 2. Arithmetic invariants
+
+`61 + 85 + 74 + 17 = 237`
+
+`61 × 85 × 74 × 17 = 6,522,730`
+
+Exact arithmetic confirmed.
+
+### 3. Governance position
+
+| Property | State |
+|---|---|
+| Original identity | Preserved |
+| Extended identity | Preserved |
+| Structural definition | Defined |
+| Physical interpretation | Unassigned |
+| Verification | Unassessed |
+| Conformance | Unassessed |
+| Sealing | Not authorised |
+
+### 4. Governing engineering sequence
+
+```text
+IDENTITY
+→ RELATIONSHIP
+→ EVIDENCE
+→ VERIFICATION
+→ GOVERNANCE
+```
+
+Continuity maintained.
+
+Original records remain independently identifiable. No physical measurement, semantic equivalence, verification authority or sealing is implied.
+
+`6185` preservation status: **PROPOSED / UNSEALED**.
